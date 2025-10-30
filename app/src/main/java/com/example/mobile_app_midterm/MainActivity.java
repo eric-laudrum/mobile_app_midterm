@@ -1,5 +1,7 @@
 package com.example.mobile_app_midterm;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,11 +14,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText enterNumber;
     private LinearLayout multiplicationTable;
+    public static ArrayList<Integer> numberHistory = new ArrayList<>();
 
 
     @Override
@@ -38,6 +43,15 @@ public class MainActivity extends AppCompatActivity {
         // Set enter button to create table
         Button enterButton = findViewById(R.id.enterNumberButton);
         enterButton.setOnClickListener(v->createTable());
+
+        // Set button to redirect to History
+        Button historyButton = findViewById(R.id.goToHistory);
+        historyButton.setOnClickListener(v->{
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    HistoryActivity.class);
+            startActivity(intent);
+        });
         }
 
     // Create table
